@@ -54,12 +54,12 @@
             </div> -->
             <div>
               <span :style="{ marginRight: '5px', width: '60%' }">{{
-                record?.realName
-              }}</span>
+                  record?.realName
+                }}</span>
               <a
                 v-if="state.activeKey !== 0"
                 :style="{ textDecoration: 'underline' }"
-                >打印信息单</a
+              >打印信息单</a
               >
             </div>
             <div>
@@ -111,7 +111,8 @@
                   state.currentOrder = record?.orderSn
                 }
               "
-              >退票</Button
+            >退票
+            </Button
             >
           </div>
         </template>
@@ -150,16 +151,6 @@
         @change="handlePage"
       ></Pagination>
     </div>
-    <div class="tips-txt">
-      <h2 :style="{ fontSize: '16px' }">温馨提示：</h2>
-      <p>1. 席位已锁定，请在指定时间内完成网上支付。</p>
-      <p>2. 逾期未支付，系统将取消本次交易。</p>
-      <p>3. 在完成支付或取消订单之前，您将无法购买其他车票</p>
-      <p>
-        4.
-        未尽事宜详见《国铁集团铁路旅客运输规程》《广深港高铁铁路跨境旅客运输组织规则》《中老铁路跨境旅客联运组织规则》等有关规定和车站公告。
-      </p>
-    </div>
   </Card>
   <Modal
     width="40%"
@@ -176,7 +167,9 @@
       show-icon
       style="background-color: #fff; border: none"
     >
-      <template #icon><QuestionCircleFilled /></template>
+      <template #icon>
+        <QuestionCircleFilled />
+      </template>
     </Alert>
     <Divider :dashed="true" />
     <div style="padding: 0 30px">
@@ -202,11 +195,11 @@
         state.dataSource
           ?.find((item) => item.orderSn === state.currentOrder)
           ?.passengerDetails?.filter((item) =>
-            state.refundOrder.includes(item.id)
-          )
+          state.refundOrder.includes(item.id)
+        )
           ?.map((item) => item.amount)
           ?.reduce((after, pre) => after + pre, 0) /
-          100
+        100
       }}</a>
     </div>
     <Divider :dashed="true" />
@@ -217,11 +210,11 @@
           state.dataSource
             ?.find((item) => item.orderSn === state.currentOrder)
             ?.passengerDetails?.filter((item) =>
-              state.refundOrder.includes(item.id)
-            )
+            state.refundOrder.includes(item.id)
+          )
             ?.map((item) => item.amount)
             ?.reduce((after, pre) => after + pre, 0) /
-            100
+          100
         }}</a>
       </div>
       <div>
@@ -230,11 +223,11 @@
           state.dataSource
             ?.find((item) => item.orderSn === state.currentOrder)
             ?.passengerDetails?.filter((item) =>
-              state.refundOrder.includes(item.id)
-            )
+            state.refundOrder.includes(item.id)
+          )
             ?.map((item) => item.amount)
             ?.reduce((after, pre) => after + pre, 0) /
-            100
+          100
         }}</a>
       </div>
     </div>
@@ -242,13 +235,13 @@
     <div style="color: #999999; padding: 0 30px">
       <QuestionCircleFilled />
       <span style="margin-left: 20px"
-        >实际核收退票费及应退票款将按最终交易时间计算。</span
+      >实际核收退票费及应退票款将按最终交易时间计算。</span
       >
     </div>
     <div style="color: #999999; padding: 0 30px">
       <QuestionCircleFilled />
       <span style="margin-left: 20px"
-        >如你需要办理该次列车前续、后续退票业务，请于退票车次票面开车时间前办理。</span
+      >如你需要办理该次列车前续、后续退票业务，请于退票车次票面开车时间前办理。</span
       >
     </div>
     <Space style="width: 100%; justify-content: center; margin-top: 20px">
@@ -257,7 +250,8 @@
         @click="handleRefund"
         type="primary"
         :disabled="!state.refundOrder.length"
-        >确定</Button
+      >确定
+      </Button
       >
     </Space>
   </Modal>
@@ -497,6 +491,7 @@ const handleRefund = () => {
 .card-container {
   overflow: hidden;
 }
+
 .tips-txt {
   background: #fffbe5;
   border: 1px solid #fbd800;
@@ -540,12 +535,14 @@ const handleRefund = () => {
   .ant-tabs-top > .ant-tabs-nav {
     margin: 0;
   }
+
   .ant-tabs-content-holder {
     padding: 12px;
     background-color: #fff;
     box-sizing: border-box;
     background-image: none;
   }
+
   .custom-modal {
     .ant-alert-warning {
       background-color: #fff !important;

@@ -2,44 +2,35 @@
   <div class="buy-ticket-wrapper">
     <Space direction="vertical" :style="{ width: '100%' }" size="large">
       <Card>
-        <template #title>
-          <div class="title-wrapper">
-            <h1>列表信息</h1>
-            <h2>（以下余票信息仅供参考）</h2>
-          </div>
-        </template>
         <div>
           <span class="important-text">{{ query.departureDate }}</span>
           <span class="important-text"
-            >（{{ getWeekNumber(dayjs(query.departureDate).day()) }}）</span
+          >（{{ getWeekNumber(dayjs(query.departureDate).day()) }}）</span
           >
           <span class="important-text">{{ query.trainNumber }}</span>
           <span class="small-text">次</span>
           <span class="important-text">{{ state.currTrain?.departure }}</span>
           <span class="small-text">站</span>
           <span class="important-text"
-            >（{{ state.currTrain?.departureTime }}开）——</span
+          >（{{ state.currTrain?.departureTime }}开）——</span
           >
           <span class="important-text">{{ state.currTrain?.arrival }}</span>
           <span class="small-text">站</span>
           <span class="important-text"
-            >（{{ state.currTrain?.duration }}到）</span
+          >（{{ state.currTrain?.duration }}到）</span
           >
         </div>
         <Divider dashed></Divider>
         <div class="seat-wrapper">
           <div v-for="item in state.currentSeat">
             <span>{{
-              SEAT_CLASS_TYPE_LIST.find((seat) => seat.code === item.type)
-                ?.label
-            }}</span>
+                SEAT_CLASS_TYPE_LIST.find((seat) => seat.code === item.type)
+                  ?.label
+              }}</span>
             （ <span class="price">￥{{ item?.price }}</span
-            >）
+          >）
             <span>{{ item.quantity >= 1 ? '有票' : '1张票' }}</span>
           </div>
-        </div>
-        <div class="tip">
-          *显示的卧铺票价均为上铺票价，供您参考，具体票价以您确认支付时实际购买的铺别票价为准。
         </div>
       </Card>
       <Card>
@@ -61,11 +52,13 @@
             <Checkbox
               v-for="item in state.currPassengerList"
               :value="item.id"
-              >{{ item.realName }}</Checkbox
+            >{{ item.realName }}
+            </Checkbox
             >
           </CheckboxGroup>
           <Button v-else @click="router.push('/passenger')" type="link"
-            >去添加乘车人</Button
+          >去添加乘车人
+          </Button
           >
         </div>
         <Divider></Divider>
@@ -88,7 +81,8 @@
               <SelectOption
                 v-for="item in TICKET_TYPE_LIST"
                 :value="item.value"
-                >{{ item.label }}</SelectOption
+              >{{ item.label }}
+              </SelectOption
               >
             </Select>
           </template>
@@ -106,7 +100,8 @@
                     SEAT_CLASS_TYPE_LIST.find((seat) => seat.code === item.type)
                       ?.label
                   }(￥${item.price})`
-                }}</SelectOption
+                }}
+              </SelectOption
               >
             </Select>
           </template>
@@ -116,8 +111,9 @@
           <template #idType="{ text }">
             <Select disabled :style="styleWidth" :value="text">
               <SelectOption v-for="item in ID_CARD_TYPE" :value="item.value">{{
-                item.label
-              }}</SelectOption>
+                  item.label
+                }}
+              </SelectOption>
             </Select>
           </template>
           <template #idCard="{ text }">
@@ -130,19 +126,7 @@
             />
           </template>
         </Table>
-        <img
-          :style="{ width: '100%' }"
-          src="https://kyfw.12306.cn/otn/resources/images/ins_ad7.png"
-          alt=""
-        />
       </Card>
-      <div>
-        <span>提交订单表示已阅读并同意</span>
-        <span
-          ><a href="">《国铁集团铁路旅客运输规程》</a
-          ><a href="">《服务条款》</a></span
-        >
-      </div>
       <div :style="{ width: '100%', textAlign: 'center' }">
         <Space size="large">
           <Button @click="() => router.push('/ticketSearch')">上一步</Button>
@@ -153,58 +137,10 @@
                 handleSubmit()
               }
             "
-            >提交订单</Button
+          >提交订单
+          </Button
           >
         </Space>
-      </div>
-      <div class="tips-txt">
-        <h2>温馨提示：</h2>
-        <p>
-          1.
-          一张有效身份证件同一乘车日期同一车次只能购买一张车票，高铁动卧列车除外。
-        </p>
-        <p>
-          2.
-          购买儿童票时，乘车儿童有有效身份证件的，请填写本人有效身份证件信息。自2023年1月1日起，每一名持票成年人旅客可免费携带一名未满6周岁且不单独占用席位的儿童乘车，超过一名时，超过人数应购买儿童优惠票。免费儿童可以在购票成功后添加。
-        </p>
-        <p>
-          3.
-          购买残疾军人（伤残警察）优待票的，须在购票后、开车前办理换票手续方可进站乘车。换票时，不符合规定的减价优待条件，没有有效"中华人民共和国残疾军人证"或"中华人民共和国伤残人民警察证"的，不予换票，所购车票按规定办理退票手续。
-        </p>
-        <p>
-          4.一天内3次申请车票成功后取消订单（包含无座票时取消5次计为取消1次），当日将不能在12306继续购票。
-        </p>
-        <p>
-          <strong
-            >5.购买铁路乘意险的注册用户年龄须在18周岁以上，使用非中国居民身份证注册的用户如购买铁路乘意险，须在<a
-              href="../view/information.html"
-              shape="rect"
-              >我的12306——个人信息</a
-            >
-            如实填写“出生日期”。</strong
-          >
-        </p>
-        <p>
-          <strong
-            >6.父母为未成年子女投保，须在<a
-              href="../view/passengers.html"
-              shape="rect"
-              >我的乘车人</a
-            >
-            登记未成年子女的有效身份证件信息。</strong
-          >
-        </p>
-        <p>7.未尽事宜详见《铁路旅客运输规程》等有关规定和车站公告。</p>
-        <p name="xjky" style="display: none">
-          8.
-          为确保乘客在旅途中有一个安全、舒适的乘坐环境，自2020年11月17日起，<span
-            style="color: red"
-            >旅客不得随身携带长宽高之和大于130厘米的雪具乘车</span
-          >
-          。您可选择雪具快运服务，请提前1-2天选择雪具快运“门到站”或“站到站”服务，中铁快运提供雪具到站后3日免费保管，请您根据出行时间，提前咨询和办理。中铁快运客服热线：95572<br
-            clear="none"
-          />
-        </p>
       </div>
     </Space>
     <Modal
@@ -219,19 +155,19 @@
         <div>
           <span class="important-text">{{ query.departureDate }}</span>
           <span class="important-text"
-            >（{{ getWeekNumber(dayjs(query.departureDate).day()) }}）</span
+          >（{{ getWeekNumber(dayjs(query.departureDate).day()) }}）</span
           >
           <span class="important-text">{{ query.trainNumber }}</span>
           <span class="small-text">次</span>
           <span class="important-text">{{ state.currTrain?.departure }}</span>
           <span class="small-text">站</span>
           <span class="important-text"
-            >（{{ state.currTrain?.departureTime }}开）——</span
+          >（{{ state.currTrain?.departureTime }}开）——</span
           >
           <span class="important-text">{{ state.currTrain?.arrival }}</span>
           <span class="small-text">站</span>
           <span class="important-text"
-            >（{{ state.currTrain?.duration }}到）</span
+          >（{{ state.currTrain?.duration }}到）</span
           >
         </div>
         <Table
@@ -261,7 +197,7 @@
           "
         >
           <a href=""
-            >*如果本次列车剩余席位无法满足您的选座需求，系统将自动为您分配席位</a
+          >*如果本次列车剩余席位无法满足您的选座需求，系统将自动为您分配席位</a
           >
           <div class="seat-choose-wrapper">
             <div>
@@ -331,10 +267,10 @@
         <div class="info-tip">
           本次列车，<span v-for="item in state.currentSeat">
             {{
-              SEAT_CLASS_TYPE_LIST.find((seat) => seat.code === item.type)
-                ?.label
-            }}余票{{ item.quantity }},</span
-          >
+            SEAT_CLASS_TYPE_LIST.find((seat) => seat.code === item.type)
+              ?.label
+          }}余票{{ item.quantity }},</span
+        >
         </div>
         <Space
           size="large"
@@ -353,7 +289,8 @@
               border: 'none'
             }"
             @click="handleSubmitBuyTicket"
-            >确认</Button
+          >确认
+          </Button
           >
         </Space>
       </Space>
@@ -391,6 +328,7 @@ import dayjs from 'dayjs'
 import { SEAT_CLASS_TYPE_LIST } from '@/constants'
 import Cookie from 'js-cookie'
 import router from '@/router'
+
 const styleWidth = { width: '150px' }
 
 const { query } = useRoute()
@@ -505,11 +443,11 @@ watch(
     let isChooseSeat = true
     let seatType = newValue?.length && newValue[0].seatType
     newValue?.length &&
-      newValue.map((item) => {
-        if (item.seatType !== seatType) {
-          isChooseSeat = false
-        }
-      })
+    newValue.map((item) => {
+      if (item.seatType !== seatType) {
+        isChooseSeat = false
+      }
+    })
     state.isChooseSeat = isChooseSeat
   },
   { deep: true }
@@ -676,35 +614,43 @@ const handleSubmitBuyTicket = () => {
     display: flex;
     height: 20px;
     line-height: 20px;
+
     h1 {
       font-size: 16px;
       margin: 0;
       color: #fff;
     }
+
     h2 {
       font-size: 14px;
       margin: 0;
       color: #fff;
     }
   }
+
   .important-text {
     font-size: 16px;
     font-weight: bolder;
     // margin-right: 5px;
   }
+
   .seat-wrapper {
     display: flex;
     margin-bottom: 10px;
+
     > div {
       margin-right: 10px;
+
       .price {
         color: #f57531;
       }
     }
   }
+
   .tip {
     color: #1e71bd;
   }
+
   .user-tip {
     .anticon-user {
       color: #1e71bd;
@@ -712,55 +658,68 @@ const handleSubmitBuyTicket = () => {
       margin-right: 5px;
     }
   }
+
   .check-wrapper {
     padding: 5px 10px;
   }
+
   .submit-btn {
     background-color: #fd6a09;
     color: #fff;
   }
+
   .tips-txt {
     background: #fffbe5;
     border: 1px solid #fbd800;
     padding: 5px;
   }
 }
+
 ::v-deep {
   .ant-card-head {
     background-color: #1e71bd;
   }
+
   .ant-card-body {
     background-color: #ebedf6;
     padding: 10px 15px;
   }
+
   .ant-divider-dashed {
     border-color: #d1d3da;
   }
+
   .ant-divider-horizontal {
     margin: 10px 0;
   }
+
   .ant-table-thead {
     .ant-table-cell {
       background: #f3f3f3 !important;
       background-color: #f3f3f3 !important;
     }
+
     > tr > th {
       padding: 8px;
     }
   }
+
   .check-info-wrapper {
     .ant-modal-header {
       background-color: #2386c8;
     }
   }
 }
+
 .check-info-wrapper {
   .important-text {
     font-size: 16px;
     font-weight: bolder;
   }
+
   .info-tip {
     color: #909090;
+
     span {
       font-size: 18px;
       color: #db0000;
@@ -768,33 +727,36 @@ const handleSubmitBuyTicket = () => {
     }
   }
 }
+
 .seat-choose-wrapper {
   display: flex;
   width: 100%;
   background-color: #f3f3f3;
   padding: 20px;
+
   .tip {
     color: #ff8001;
     margin-right: 40px;
   }
+
   .action-wrapper {
     display: flex;
     align-items: center;
 
     padding: 20px;
+
     .seat-img {
       display: inline-block;
       text-align: center;
       width: 30px;
       height: 28px;
       line-height: 25px;
-      background: url(https://kyfw.12306.cn/otn/resources/images/bg017.png)
-        no-repeat;
       color: #fff;
       margin: 0 5px;
       cursor: pointer;
-      background-position: -80px 0;
+      background: url(https://kyfw.12306.cn/otn/resources/images/bg017.png) no-repeat -80px 0;
     }
+
     .cur {
       background-position: -40px 0;
     }

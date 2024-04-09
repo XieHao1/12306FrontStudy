@@ -609,8 +609,10 @@ const handleBook = (record) => {
                       fontSize: '20px',
                       color: '#1990ff'
                     }"
-                  /></div
-              ></Col>
+                  />
+                </div
+                >
+              </Col>
               <Col :span="5">
                 <FormItem label="目的地">
                   <Select
@@ -648,7 +650,8 @@ const handleBook = (record) => {
                         handSubmit()
                       }
                     "
-                    >查询</Button
+                  >查询
+                  </Button
                   >
                 </FormItem>
               </Col>
@@ -707,7 +710,8 @@ const handleBook = (record) => {
                               border: '1px solid #f0f0f0',
                               marginRight: '10px'
                             }"
-                            >全部</CheckableTag
+                          >全部
+                          </CheckableTag
                           >
                           <Checkbox
                             v-for="seatItem in state.trainBrandListSelect"
@@ -716,11 +720,12 @@ const handleBook = (record) => {
                                 (item) => item.code === seatItem
                               )?.code
                             "
-                            >{{
+                          >{{
                               TRAIN_BRAND_LIST.find(
                                 (item) => item.code === seatItem
                               )?.label
-                            }}</Checkbox
+                            }}
+                          </Checkbox
                           >
                         </CheckboxGroup>
                       </FormItem>
@@ -754,12 +759,14 @@ const handleBook = (record) => {
                                 }
                               }
                             "
-                            >全部</CheckableTag
+                          >全部
+                          </CheckableTag
                           >
                           <Checkbox
                             v-for="item in currCityStations"
                             :value="item"
-                            >{{ item }}</Checkbox
+                          >{{ item }}
+                          </Checkbox
                           >
                         </CheckboxGroup>
                       </FormItem>
@@ -793,12 +800,14 @@ const handleBook = (record) => {
                                 }
                               }
                             "
-                            >全部</CheckableTag
+                          >全部
+                          </CheckableTag
                           >
                           <Checkbox
                             v-for="item in currArrivalStations"
                             :value="item"
-                            >{{ item }}</Checkbox
+                          >{{ item }}
+                          </Checkbox
                           >
                         </CheckboxGroup>
                       </FormItem>
@@ -835,7 +844,8 @@ const handleBook = (record) => {
                               border: '1px solid #f0f0f0',
                               marginRight: '10px'
                             }"
-                            >全部</CheckableTag
+                          >全部
+                          </CheckableTag
                           >
                           <Checkbox
                             v-for="seatItem in state.seatClassTypeListSelect"
@@ -844,11 +854,12 @@ const handleBook = (record) => {
                                 (item) => item.code === seatItem
                               )?.code
                             "
-                            >{{
+                          >{{
                               SEAT_CLASS_TYPE_LIST.find(
                                 (item) => item.code === seatItem
                               )?.label
-                            }}</Checkbox
+                            }}
+                          </Checkbox
                           >
                         </CheckboxGroup>
                       </FormItem>
@@ -903,12 +914,12 @@ const handleBook = (record) => {
             headSearch.departureDate.format('MM月DD日')
           }}</span>
           <span class="time-title">{{
-            getWeekNumber(headSearch.departureDate.day())
-          }}</span
+              getWeekNumber(headSearch.departureDate.day())
+            }}</span
           >） 共计<span :style="{ fontWeight: 'bolder' }">{{
             state.trainList?.length
           }}</span
-          >个车次
+        >个车次
         </Col>
       </Row>
       <div class="custome-table">
@@ -933,7 +944,7 @@ const handleBook = (record) => {
                     // ''
                     handlePriceShow(
                       text?.find((item) => item?.type === 0)?.price ??
-                        text.find((item) => item?.type === 12)?.price
+                      text.find((item) => item?.type === 12)?.price
                     )
                   }}
                 </div>
@@ -952,7 +963,7 @@ const handleBook = (record) => {
                   {{
                     handlePriceShow(
                       text?.find((item) => item?.type === 2)?.price ??
-                        text?.find((item) => item.type === 3)?.price
+                      text?.find((item) => item.type === 3)?.price
                     )
                   }}
                 </div>
@@ -980,7 +991,7 @@ const handleBook = (record) => {
                   {{
                     handlePriceShow(
                       text?.find((item) => item?.type === 6)?.price ??
-                        text?.find((item) => item?.type === 4)?.price
+                      text?.find((item) => item?.type === 4)?.price
                     )
                   }}
                 </div>
@@ -990,7 +1001,7 @@ const handleBook = (record) => {
                   {{
                     handlePriceShow(
                       text?.find((item) => item?.type === 7)?.price ??
-                        text?.find((item) => item?.type === 5)?.price
+                      text?.find((item) => item?.type === 5)?.price
                     )
                   }}
                 </div>
@@ -1087,8 +1098,10 @@ const handleBook = (record) => {
                     :data-source="state.trainStationList"
                     :pagination="false"
                     :loading="state.loading"
-                  ></Table> </template
-              ></Tooltip>
+                  ></Table>
+                </template
+                >
+              </Tooltip>
             </h1>
           </template>
           <template #station="{ _, record }">
@@ -1104,7 +1117,7 @@ const handleBook = (record) => {
                   fontWeight: 'bolder',
                   marginRight: '2px'
                 }"
-                >{{ record.departureFlag ? '始' : '过' }}</span
+              >{{ record.departureFlag ? '始' : '过' }}</span
               >{{ record.departure }}
             </div>
             <div>
@@ -1119,7 +1132,7 @@ const handleBook = (record) => {
                   fontWeight: 'bolder',
                   marginRight: '2px'
                 }"
-                >{{ record.arrivalFlag ? '终' : '过' }}</span
+              >{{ record.arrivalFlag ? '终' : '过' }}</span
               >{{ record.arrival }}
             </div>
           </template>
@@ -1342,21 +1355,13 @@ const handleBook = (record) => {
               :disabled="
                 !record.seatClassList.filter((item) => item.quantity)?.length
               "
-              >预定</Button
+            >预定
+            </Button
             >
-          </template></Table
+          </template>
+        </Table
         >
       </div>
-      <Alert type="warning"
-        ><template #description>
-          <div>
-            如果查询结果中没有满足需求的车次，您还可以使用中转换乘功能，查询途中换乘一次的部分列车余票情况。
-          </div>
-          <div>
-            显示的卧铺票价均为上铺票价，供您参考。具体票价以您确认支付时实际购买的铺别票价为准。如因运力原因或者其他不可控因素导致列车调度调整时，当前车型可能会发生变动
-          </div>
-        </template>
-      </Alert>
     </Space>
   </div>
 </template>
@@ -1368,14 +1373,17 @@ const handleBook = (record) => {
   padding: 0;
   border-radius: 4px;
 }
+
 .spacial-label {
   font-weight: bolder;
 }
+
 .city-name {
   display: inline-block;
   padding: 0 10px;
   font-weight: bolder;
 }
+
 .time-title {
   display: inline-block;
   padding: 0 5px;
@@ -1388,52 +1396,63 @@ const handleBook = (record) => {
       content: '√';
     }
   }
+
   .ant-tooltip-inner {
     background-color: #fff;
     padding: 0px;
     width: 500px;
   }
+
   .ant-tooltip-arrow-content {
     background-color: #1890ff;
   }
+
   .ant-table-thead {
     .ant-table-cell {
-      background: url(https://kyfw.12306.cn/otn/resources/images/bg_tlisthd.png)
-        top repeat-x;
+      background: url(https://kyfw.12306.cn/otn/resources/images/bg_tlisthd.png) top repeat-x;
       background-size: cover;
     }
   }
+
   .ant-tabs {
     border: 1px solid #f0f0f0;
     border-top: none;
   }
+
   .ant-form {
     align-items: center;
     justify-content: space-between;
   }
+
   .ant-divider-vertical {
     height: 100%;
   }
+
   .ant-tabs-card.ant-tabs-top > .ant-tabs-nav .ant-tabs-tab + .ant-tabs-tab {
     margin-left: 0;
   }
+
   .ant-tabs-card > .ant-tabs-nav .ant-tabs-tab {
     /* // border-right: none; */
   }
+
   .ant-tabs-nav-wrap {
     width: 100%;
 
     .ant-tabs-nav-list {
       width: 100%;
+
       .ant-tabs-tab:first-child {
         border-left: none;
       }
+
       .ant-tabs-tab {
         /* // flex: 1; */
         width: 6.5%;
         text-align: center;
         border-top-left-radius: 0px !important;
         border-top-right-radius: 0px !important;
+
         .ant-tabs-tab-btn {
           width: 100%;
           text-align: center;
@@ -1447,6 +1466,7 @@ const handleBook = (record) => {
     }
   }
 }
+
 ::v-deep(.custome-table) {
   .ant-table-thead > tr > th {
     color: #fff;
